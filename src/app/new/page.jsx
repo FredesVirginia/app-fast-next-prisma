@@ -19,7 +19,7 @@ function NewPage({params}) {
         setDescription(data.description)
   })
     }
-  } , [])
+  } , [params])
 
 
 
@@ -47,11 +47,14 @@ function NewPage({params}) {
     }else{
 
     try {
-      const response = await axios.post('/api/tasks', { title, description });
+      const response = await axios.post('/api/tasks', { title, description } , {
+        headers: {
+          'Content-Type': 'application/json'
+         }});
       console.log(response.data);
       
     } catch (error) {
-      console.error(error);
+     alert("Ocurrio un Error")
     }
 
     }
